@@ -1,0 +1,15 @@
+{
+  "name": "rive-weatherman",
+  "version": "1.0.0",
+  "description": "Your weather report",
+  "main": "script.js",
+  "scripts": {
+    "start": "node script.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "request": "^2.69.0",
+    "rivescript": "^1.16.0"
+  }
+}
