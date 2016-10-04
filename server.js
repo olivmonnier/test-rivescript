@@ -7,7 +7,9 @@ var bodyParser = require('body-parser');
 var RiveScript = require('rivescript');
 var app = express();
 var rs = new RiveScript();
+var utils = require('./utils');
 var weatherService = require('./services/weather');
+var youtubeService = require('./services/youtube');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -17,17 +19,21 @@ var AsyncBot = function(onReady) {
     var self = this;
 
     // Load the replies and process them.
-    rs.loadFile('weatherman.rive', function() {
+    rs.loadDirectory('./brain', function() {
       rs.sortReplies();
       weatherService(rs);
+      youtubeService(rs);
       onReady();
     });
 
     // This is a function for delivering the message to a user.
     self.sendMessage = function(username, message) {
       // This just logs it to the console like '[Bot] @username: message'
-
-      return ['[Brick Tamland]', message].join(': ');
+      if (utils.isJsonString(message)) {
+        return JSON.parse(message);
+      } else {
+        return message;
+      }
     };
 
     // This is a function for a user requesting a reply. It just proxies through
