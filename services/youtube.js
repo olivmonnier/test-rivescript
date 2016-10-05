@@ -16,7 +16,7 @@ var ytSearch = function(terms, nbResults, callback) {
 module.exports = function(rs) {
   rs.setSubroutine('youtube', function(rs, args) {
     return new rs.Promise(function(resolve, reject) {
-      ytSearch(args[0], 10, function(error, data) {
+      ytSearch(args.join(' '), 10, function(error, data) {
         if (error) {
           reject(error);
         } else {

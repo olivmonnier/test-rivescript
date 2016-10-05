@@ -9,6 +9,7 @@
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
+    "node-wikipedia": "0.0.2",
     "request": "^2.69.0",
     "rivescript": "^1.16.0",
     "youtube-node": "^1.3.0"

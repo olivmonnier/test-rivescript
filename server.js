@@ -8,8 +8,9 @@ var RiveScript = require('rivescript');
 var app = express();
 var rs = new RiveScript();
 var utils = require('./utils');
-var weatherService = require('./services/weather');
 var youtubeService = require('./services/youtube');
+var weatherService = require('./services/weather');
+var wikipediaService = require('./services/wikipedia');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -21,8 +22,9 @@ var AsyncBot = function(onReady) {
     // Load the replies and process them.
     rs.loadDirectory('./brain', function() {
       rs.sortReplies();
-      weatherService(rs);
       youtubeService(rs);
+      weatherService(rs);
+      wikipediaService(rs);
       onReady();
     });
 
